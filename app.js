@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
-const db = require('./database/connection');
+const routes = require('./routes/routes');
 
-const DriverController = require('./controller/DriverController');
-app.use('/driver', DriverController);
+routes(app);
 
 module.exports = app;

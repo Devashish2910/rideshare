@@ -1,0 +1,13 @@
+// Load Library
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+
+// Load Data Model
+//const Driver = require('./../database/models/drivers');
+
+
+//exports
+module.exports = router;
