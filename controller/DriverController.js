@@ -43,7 +43,16 @@ router.put('/update/:id', (req, res) => {
    })
 });
 
-
+// Delete Driver
+router.delete('/remove/:id', (req, res) => {
+  Driver.findByIdAndRemove(req.params.id)
+   .then(removedData => {
+     res.status(204).send("Removed");
+   })
+   .catch(err => {
+     res.status(500).send(err.message);
+   })
+});
 
 
 
