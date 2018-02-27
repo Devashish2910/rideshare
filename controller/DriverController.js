@@ -1,6 +1,9 @@
 // <----- Load Libraries ----->
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 const _ = require('lodash');
 const Driver = require('./../database/models/drivers');
 
@@ -13,14 +16,35 @@ router.post('/signup', (req, res) => {
   driverData['address'] = address;
 
   const driver = new Driver(driverData);
-  driver.save()
+  Driver.create(driver)
    .then((user) => {
      res.status(200).send(driverData);
    })
    .catch(err => {
-     res.status(500).send(err.message);
+     res.status(500).send({error: err.message});
    })
 });
+
+// Update Driver Address
+
+// Update Driver Details
+router.put('/update/:id', (req, res) => {
+  const driverId = req.params.id;
+  const address = _.pick(req.body, ['street1', 'street2', 'city', 'state', 'county', 'country', 'zip']);
+  const driverData = _.pick(req.body, ['name', 'email', 'mobile', 'isDriving', 'licence']);
+
+  if(!_.isEmpty(address)) {
+    driverData['address'] = address;
+  }
+
+  Driver.findByIdAndUpdate({_id: driverId}, {$set: driverData}, {new: true, multi: true, runValidators: true})
+   .then(updatedUser => {
+     res.send(updatedUser);
+   })
+});
+
+
+
 
 
 // <-------- EXPORTS --------->
