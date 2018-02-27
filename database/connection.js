@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/rideshare');
 
-mongoose.connect()
- once('open', () => {
-   console.log('Connected...');
+mongoose.connection
+ .once('open', () => {
+   console.log('Connected With Database..');
  })
- on('error', err => {
+ .on('error', (err) => {
    console.warn(err);
  });
 

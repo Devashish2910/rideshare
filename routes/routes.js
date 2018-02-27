@@ -6,5 +6,5 @@ const RootController = require('./../controller/RootController');
 module.exports = app => {
   // Root Routes
   // Routes on drivers
-  app.use('/driver', DriverController);
+  app.use('/d', DriverController);
 }

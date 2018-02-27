@@ -4,7 +4,7 @@
   "description": "RESTapi to manage drivers' collection for Ride Sharing Application whth Node/Express + mongoDB",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha"
   },
   "author": "Devashish G Patel",
   "license": "ISC",
